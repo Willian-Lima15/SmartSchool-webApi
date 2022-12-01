@@ -23,7 +23,7 @@ namespace SmartSchool_webApi.Controllers
         {
             try
             {
-                var result = await _repo.GetAllAlunosAsync(true);
+                var result = await _repo.GetAllAlunosAsync(false);
                 return Ok(result);
             }
             catch(Exception ex)
@@ -44,6 +44,41 @@ namespace SmartSchool_webApi.Controllers
             {
                 return BadRequest($"Erro: {ex.Message}");
             }
+        }
+
+        [HttpGet("ByDisciplina/{disciplinaId}")]
+        public async Task<IActionResult> GetByDisciplinaId(int disciplinaId)
+        {
+            try
+            {
+                var result = await _repo.GetAlunosAsyncByDisciplinaId(disciplinaId, false);
+                return Ok(result);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest($"Erro: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(Aluno model)
+        {
+            try
+            {
+                _repo.Add(model);
+
+                if(await _repo.SaveChangesAsync())
+                {
+                    return Ok(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                return BadRequest($"Erro: {ex.Message}");
+            }
+
+            return BadRequest("Erro não esperado");
         }
     }
 }

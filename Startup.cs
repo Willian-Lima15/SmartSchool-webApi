@@ -31,7 +31,8 @@ namespace SmartSchool_webApi
                 x => x.UseSqlite(Configuration.GetConnectionString("DefaultConn"))
             );
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);//ignora loop infinito
             services.AddScoped<IRepository, Repository>();//Adicionando acesso ao banco de dados
         }
 

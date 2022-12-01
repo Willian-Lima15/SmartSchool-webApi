@@ -64,3 +64,7 @@ D:\Projetos\Angular\SmartSchool-webApi\bin\Debug\netcoreapp3.1\runtimes\win-arm6
 D:\Projetos\Angular\SmartSchool-webApi\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\e_sqlite3.dll
 D:\Projetos\Angular\SmartSchool-webApi\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\e_sqlite3.dll
 D:\Projetos\Angular\SmartSchool-webApi\obj\Debug\netcoreapp3.1\SmartSchool-webApi.csproj.CopyComplete
+D:\Projetos\Angular\SmartSchool-webApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\Projetos\Angular\SmartSchool-webApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\Projetos\Angular\SmartSchool-webApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Projetos\Angular\SmartSchool-webApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
