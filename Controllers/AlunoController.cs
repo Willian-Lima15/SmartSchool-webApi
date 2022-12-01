@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SmartSchool_webApi.Data;
+using SmartSchool_webApi.Models;
 
 namespace SmartSchool_webApi.Controllers
 {
@@ -60,7 +61,7 @@ namespace SmartSchool_webApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost]//criar
         public async Task<IActionResult> Post(Aluno model)
         {
             try
@@ -79,6 +80,53 @@ namespace SmartSchool_webApi.Controllers
             }
 
             return BadRequest("Erro não esperado");
+        }
+
+        [HttpPut("{AlunoId}")]//atualizar
+        public async Task<IActionResult> Put(int AlunoId, Aluno model)
+        {
+            try
+            {
+                var Aluno = await _repo.GetAlunoAsyncById(AlunoId, false);
+                if(Aluno == null) return NotFound();
+
+                _repo.Update(model);
+
+                if(await _repo.SaveChangesAsync())
+                {
+                    return Ok(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                return BadRequest($"Erro: {ex.Message}");
+            }
+
+            return BadRequest();
+        }
+
+        [HttpDelete("{AlunoId}")]
+        public async Task<IActionResult> delete(int AlunoId)
+        {
+            try
+            {
+                var aluno = await _repo.GetAlunoAsyncById(AlunoId,false);
+                if(aluno == null) return NotFound();
+
+                _repo.Delete(aluno);
+
+                if(await _repo.SaveChangesAsync())
+                {
+                    return Ok("Deletado");
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                return BadRequest($"Erro: {ex.Message}");
+            }
+            return BadRequest();
         }
     }
 }
